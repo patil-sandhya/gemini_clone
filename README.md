@@ -24,7 +24,6 @@ A full-featured backend built with **Node.js**, **Express**, **PostgreSQL**, **R
 
 ### 1. Clone and Install
 
-```bash
 git clone https://github.com/<your-username>/gemini-backend.git
 cd gemini-backend
 npm install
