@@ -7,6 +7,7 @@ const subscriptionRoutes = require('./routes/subscription.routes');
 const Stripe = require('stripe');
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 const errorHandler = require('./middleware/errorHandler.middleware');
+const { Subscription } = require('./models');
 
 app.use('/webhook/stripe', express.raw({ type: 'application/json' }));
 app.use(express.json());
