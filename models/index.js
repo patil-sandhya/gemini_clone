@@ -11,7 +11,9 @@ const db = {};
 
 let sequelize;
 if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config);
+  const dbUrl = process.env[config.use_env_variable];
+  if (!dbUrl) throw new Error(`Missing env: ${config.use_env_variable}`);
+  sequelize = new Sequelize(dbUrl, config);
 } else {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
