@@ -55,7 +55,7 @@ exports.sendMessage = async (req, res) => {
     userId: req.user.id,
     chatroomId,
     text,
-    response: null, // response will be filled later
+    response: null, 
   });
 
   await messageQueue.add('processMessage', {
