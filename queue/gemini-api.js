@@ -28,10 +28,10 @@ async function callGemini(userPrompt) {
     console.log("resss", response)
     const text = response.data.candidates?.[0]?.content?.parts?.[0]?.text;
 
-    return text || '⚠️ Gemini returned an empty response.';
+    return text || ' Gemini returned an empty response.';
   } catch (err) {
     console.error('Gemini API Error:', err.response?.data || err.message);
-    return '❌ Error calling Gemini API.';
+    return 'Error calling Gemini API.';
   }
 }
 
