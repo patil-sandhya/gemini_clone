@@ -12,7 +12,7 @@ module.exports = async function rateLimiter(req, res, next) {
     const isPro = subscription?.tier === 'pro';
 
     if (isPro) {
-      return next(); // ✅ Pro user → unlimited
+      return next(); //  Pro user → unlimited
     }
 
     // 2. Get current count from Redis
@@ -31,7 +31,7 @@ module.exports = async function rateLimiter(req, res, next) {
       .expire(redisKey, 24 * 60 * 60) // expire in 1 day
       .exec();
 
-    next(); // ✅ Allowed
+    next(); //  Allowed
   } catch (err) {
     console.error('Rate limiter error:', err.message);
     return res.status(500).json({
