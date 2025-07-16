@@ -45,7 +45,6 @@ exports.verifyOtp = async (req, res) => {
       return res.status(400).json({ success: false, message: 'Invalid or expired OTP' });
     }
 
-    // Generate JWT
     const token = jwt.sign({ id: user.id, mobile: user.mobile }, process.env.JWT_SECRET, {
       expiresIn: '1d',
     });
