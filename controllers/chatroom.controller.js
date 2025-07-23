@@ -15,7 +15,8 @@ exports.listChatrooms = async (req, res) => {
 
 exports.getChatroom = async (req, res) => {
  const userId = req.user.id;
-  const cacheKey = `chatrooms:${userId}`;
+  const chatroomId = req.params.id;
+  const cacheKey = `chatrooms:chatroom:${userId}:${chatroomId}`;
 
   try {
     const cached = await redis.get(cacheKey);
@@ -29,7 +30,12 @@ exports.getChatroom = async (req, res) => {
       });
     }
 
-    const chatrooms = await Chatroom.findAll({ where: { userId } });
+    const chatrooms = await Chatroom.findOne({
+      where: {
+        id: chatroomId,
+        userId: userId, 
+      },
+    });
 
     await redis.set(cacheKey, JSON.stringify(chatrooms), 'EX', 300); // 300s = 5 min
 
