@@ -10,7 +10,7 @@ const callGemini = require('./gemini-api');
 //   maxRetriesPerRequest: null, 
 // });
 
-const connection = new IORedis(process.env.UPSTASH_REDIS_URL, {
+const connection = new IORedis(process.env.REDIS_URL, {
   maxRetriesPerRequest: null,
   tls: {}, // This is required for Upstash (uses HTTPS endpoint)
 });
