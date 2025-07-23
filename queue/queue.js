@@ -8,7 +8,7 @@ const IORedis = require('ioredis');
 //   tls: {},
 // });
 
-const connection = new IORedis(process.env.UPSTASH_REDIS_URL, {
+const connection = new IORedis(process.env.REDIS_URL, {
   maxRetriesPerRequest: null,
   tls: {}, // This is required for Upstash (uses HTTPS endpoint)
 });
