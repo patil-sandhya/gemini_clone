@@ -4,10 +4,15 @@ require('dotenv').config();
 const { Message } = require('../models');
 const callGemini = require('./gemini-api');
 
-const connection = new IORedis({
-  host: process.env.REDIS_HOST || '127.0.0.1',
-  port: process.env.REDIS_PORT || 6379,
-  maxRetriesPerRequest: null, 
+// const connection = new IORedis({
+//   host: process.env.REDIS_HOST || '127.0.0.1',
+//   port: process.env.REDIS_PORT || 6379,
+//   maxRetriesPerRequest: null, 
+// });
+
+const connection = new IORedis(process.env.UPSTASH_REDIS_URL, {
+  maxRetriesPerRequest: null,
+  tls: {}, // This is required for Upstash (uses HTTPS endpoint)
 });
 
 const worker = new Worker('message-queue', async job => {
